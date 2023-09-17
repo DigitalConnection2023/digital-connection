@@ -1,10 +1,15 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import Root from "./routes/root";
+import HomePage from "./routes/home-page";
+import ErrorPage from "./routes/error-page";
+import ContactPage from "./routes/contact-page";
+import ProductsPage from "./routes/products-page";
+import PartnersPage from "./routes/partners-page";
+import ROUTE from "./routes/routes.config";
+
 import "./index.css";
-import { ErrorPage } from "./pages";
-import { Contact, Root } from "./routes";
 
 const router = createBrowserRouter([
   {
@@ -13,15 +18,26 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "contacts/:contactId",
-        element: <Contact />,
+        path: "/",
+        element: <HomePage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: ROUTE.products(),
+        element: <ProductsPage />,
+      },
+      {
+        path: ROUTE.partners(),
+        element: <PartnersPage />,
+      },
+      {
+        path: ROUTE.contact(),
+        element: <ContactPage />,
       },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <RouterProvider router={router} />
 );
