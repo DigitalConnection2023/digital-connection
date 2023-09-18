@@ -1,46 +1,44 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Footer, Header } from "../components";
+import ROUTE from "./routes.config";
+import { useTranslation } from "react-i18next";
 
-export const Root = () => {
-  return (
-    <>
-      <div id="sidebar">
-        <h1>React Router Contacts</h1>
-        <div>
-          <form id="search-form" role="search">
-            <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
+function Root() {
+    const { t } = useTranslation();
+
+    return (
+        <div className="min-h-screen flex flex-col bg-primary">
+            <Header
+                logo={<span>Logo</span>}
+                navItems={[
+                    // {
+                    //     title: "Home",
+                    //     path: ROUTE.home(),
+                    // },
+                    {
+                        title: t("Products"),
+                        path: ROUTE.products(),
+                    },
+                    {
+                        title: t("Partners"),
+                        path: ROUTE.partners(),
+                    },
+                    {
+                        title: t("Recruitment"),
+                        path: ROUTE.recruitment(),
+                    },
+                    {
+                        title: t("Contact"),
+                        path: ROUTE.contact(),
+                    },
+                ]}
             />
-            <div id="search-spinner" aria-hidden hidden={true} />
-            <div className="sr-only" aria-live="polite"></div>
-          </form>
-          <form method="post">
-            <button type="submit">New</button>
-          </form>
+            <div className="grow">
+                <Outlet />
+            </div>
+            <Footer />
         </div>
-        <nav>
-          <ul>
-            <li>
-              <Link to={`contacts/1`}>Trang chủ</Link>
-            </li>
-            <li>
-              <Link to={`contacts/2`}>Về chúng tôi</Link>
-            </li>
-            <li>
-              <Link to={`contacts/3`}>Sản phẩm</Link>
-            </li>
-            <li>
-              <Link to={`contacts/4`}>Tuyển dụng</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div id="detail">
-        <Outlet />
-      </div>
-    </>
-  );
-};
+    );
+}
+
+export default Root;
