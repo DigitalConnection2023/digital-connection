@@ -1,92 +1,110 @@
 import clsx from "clsx";
-import { useRef, useState, ReactNode, MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import i18n from "i18next";
+import { useRef, useEffect, ReactNode, MouseEvent } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 type TNavItem = {
-  key?: string;
-  title: string;
-  path: string;
+    key?: string;
+    title: string;
+    path: string;
 };
 
-interface IHeaderProps {
-  logo?: ReactNode;
-  navItems: TNavItem[];
+const navItemCls = "nav-item";
+
+function getNavLink(e: HTMLElement | null, option: "all"): NodeListOf<HTMLAnchorElement>;
+function getNavLink(e: HTMLElement | null, option?: number): HTMLAnchorElement;
+function getNavLink(e: HTMLElement | null, option?: "all" | number) {
+    if (option) {
+        const allNavLinks = e?.querySelectorAll(`.${navItemCls}`);
+        return option === "all" ? allNavLinks : allNavLinks?.[option];
+    }
+    return e?.querySelector(`.${navItemCls}`);
 }
-export function Header({ logo, navItems }: IHeaderProps) {
-  const [index, setIndex] = useState(0);
-  const indicator = useRef<HTMLDivElement>(null);
-  const navList = useRef<HTMLUListElement>(null);
 
-  const moveIndicatorTo = (navLink?: HTMLAnchorElement) => {
-    if (navLink && indicator.current && navList.current) {
-      const translateX = (navLink.parentElement?.offsetLeft || 0) + 16;
+interface IHeaderProps {
+    logo?: ReactNode;
+    homeLink?: string;
+    navItems: TNavItem[];
+}
+export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
+    const location = useLocation();
+    const indicator = useRef<HTMLDivElement>(null);
+    const navList = useRef<HTMLUListElement>(null);
 
-      indicator.current.style.width = `${navLink?.clientWidth - 32}px`;
-      indicator.current.style.translate = `${translateX}px`;
-    }
-  };
+    const modulePath = location.pathname.split("/")[1];
 
-  const onMouseEnterNavItem = (e: MouseEvent<HTMLLIElement>) => {
-    const navLink = e.currentTarget.querySelector(".nav-link");
+    const checkIfCurrentModule = (item: TNavItem) => {
+        return item.path === "/" ? location.pathname === "/" : item.path === modulePath;
+    };
 
-    if (navLink) {
-      moveIndicatorTo(navLink as HTMLAnchorElement);
-    }
-  };
+    const moveIndicatorTo = (navLink?: HTMLAnchorElement) => {
+        if (navLink && indicator.current && navList.current) {
+            // link's padding-x is 16
+            const translateX = (navLink.parentElement?.offsetLeft || 0) + 16;
 
-  const onMouseLeaveNavList = () => {
-    const navLink = navList.current?.querySelectorAll(".nav-link")?.[index];
+            indicator.current.style.width = `${navLink.clientWidth - 32}px`;
+            indicator.current.style.translate = `${translateX}px`;
+        }
+    };
 
-    if (navLink) {
-      moveIndicatorTo(navLink as HTMLAnchorElement);
-    }
-  };
+    const moveIndicatorToCurrentModule = () => {
+        const moduleIndex = navItems.findIndex(checkIfCurrentModule);
 
-  const onClickNavItem = (index: number) => {
-    setIndex(index);
-  };
+        if (moduleIndex !== -1) {
+            const navLink = getNavLink(navList.current, moduleIndex);
+            moveIndicatorTo(navLink);
+        } else if (indicator.current) {
+            indicator.current.style.width = "0px";
+            indicator.current.style.translate = "0px";
+        }
+    };
 
-  return (
-    <header className="flex justify-center sticky top-0 bg-black/20">
-      <div className="header-inner mx-auto py-2 flex justify-between">
-        {logo}
-        <nav className="relative">
-          <div
-            ref={indicator}
-            className="h-1 absolute bottom-0 left-0 duration-300 bg-red-600"
-          />
-          <ul
-            ref={navList}
-            className="py-2 list-none flex"
-            onMouseLeave={onMouseLeaveNavList}
-          >
-            {navItems.map((item, i) => {
-              return (
-                <li
-                  key={i}
-                  className={clsx("flex", i === index && "text-yellow-400")}
-                  onMouseEnter={onMouseEnterNavItem}
-                  onClick={() => onClickNavItem(i)}
-                >
-                  <Link className="px-4 nav-link" to={item.path}>
-                    {item.title}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+    useEffect(moveIndicatorToCurrentModule, [location.pathname]);
 
-          {/* <ul className="list-none flex space-x-4">
-            {navItems.map((item, i) => {
-              return (
-                <li key={item.key ?? i}>
-                  <Link to={item.path}>{item.title}</Link>
-                </li>
-              );
-            })}
-          </ul> */}
-        </nav>
-      </div>
-    </header>
-  );
+    const onMouseEnterNavItem = (e: MouseEvent<HTMLLIElement>) => {
+        const navLink = getNavLink(e.currentTarget);
+        moveIndicatorTo(navLink);
+    };
+
+    const onMouseLeaveNavList = () => {
+        moveIndicatorToCurrentModule();
+    };
+
+    return (
+        <header className="flex justify-center sticky top-0 bg-black/20">
+            <div className="header-inner mx-auto py-2 flex justify-between">
+                <Link to={homeLink}>{logo}</Link>
+
+                <div className="flex">
+                    <nav className="relative">
+                        <div ref={indicator} className="h-1 absolute -z-10 bottom-0 left-0 duration-300 bg-secondary" />
+                        <ul ref={navList} className="list-none flex" onMouseLeave={onMouseLeaveNavList}>
+                            {navItems.map((item, i) => {
+                                const isActive = checkIfCurrentModule(item);
+
+                                return (
+                                    <li
+                                        key={i}
+                                        className={clsx("flex", isActive ? "text-white" : "text-white/60")}
+                                        onMouseEnter={onMouseEnterNavItem}
+                                    >
+                                        <Link className={clsx("px-4 py-2", navItemCls)} to={item.path}>
+                                            {item.title}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </nav>
+
+                    <input
+                        type="checkbox"
+                        onChange={(e) => {
+                            i18n.changeLanguage(e.target.checked ? "en" : "vi");
+                        }}
+                    />
+                </div>
+            </div>
+        </header>
+    );
 }
