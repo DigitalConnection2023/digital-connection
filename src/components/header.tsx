@@ -1,7 +1,8 @@
 import clsx from "clsx";
-import i18n from "i18next";
+// import i18n from "i18next";
 import { useRef, useEffect, ReactNode, MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { LanguageSwitch } from "./language-switch";
 
 type TNavItem = {
     key?: string;
@@ -97,12 +98,14 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
                         </ul>
                     </nav>
 
-                    <input
+                    {/* <input
                         type="checkbox"
                         onChange={(e) => {
                             i18n.changeLanguage(e.target.checked ? "en" : "vi");
                         }}
-                    />
+                    /> */}
+
+                    <LanguageSwitch />
                 </div>
             </div>
         </header>
