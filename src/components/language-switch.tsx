@@ -3,21 +3,36 @@ import { useState } from "react";
 import { EngFlag, ViFlag } from "./svg";
 
 interface ILanguageSwitchProps {
-    defaultLang?: "vi" | "en";
+    className?: string;
+    value?: "vi" | "en";
+    defaultValue?: "vi" | "en";
     onChange?: (lang?: "vi" | "en") => void;
 }
-export const LanguageSwitch = ({ defaultLang = "vi" }: ILanguageSwitchProps) => {
-    const [language, setLanguage] = useState(defaultLang);
+export const LanguageSwitch = ({ className, defaultValue = "vi", value, onChange }: ILanguageSwitchProps) => {
+    const [internalValue, setInternalValue] = useState(defaultValue);
+    const language = internalValue ?? value;
 
-    const onClick = () => {
-        setLanguage(language === "vi" ? "en" : "vi");
+    const onClickLanguageIcon = (newLanguage: "vi" | "en") => {
+        setInternalValue(newLanguage);
+        onChange?.(newLanguage);
     };
 
     return (
-        <button className="relative" onClick={onClick}>
-            <div className={clsx("absolute", language === "vi" ? "left-0" : "right-0")}>
-                {language === "vi" ? <ViFlag /> : <EngFlag />}
-            </div>
-        </button>
+        <div className={clsx("flex space-x-1", className)}>
+            <button
+                className="opacity-50 disabled:opacity-100"
+                disabled={language === "vi"}
+                onClick={() => onClickLanguageIcon("vi")}
+            >
+                <ViFlag />
+            </button>
+            <button
+                className="opacity-50 disabled:opacity-100"
+                disabled={language === "en"}
+                onClick={() => onClickLanguageIcon("en")}
+            >
+                <EngFlag />
+            </button>
+        </div>
     );
 };

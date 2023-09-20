@@ -1,8 +1,9 @@
 import clsx from "clsx";
-// import i18n from "i18next";
+import i18n from "i18next";
 import { useRef, useEffect, ReactNode, MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LanguageSwitch } from "./language-switch";
+import { DEFAULT_LANG } from "../constant";
 
 type TNavItem = {
     key?: string;
@@ -76,7 +77,7 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
             <div className="header-inner mx-auto py-2 flex justify-between">
                 <Link to={homeLink}>{logo}</Link>
 
-                <div className="flex">
+                <div className="flex items-center space-x-2">
                     <nav className="relative">
                         <div ref={indicator} className="h-1 absolute -z-10 bottom-0 left-0 duration-300 bg-secondary" />
                         <ul ref={navList} className="list-none flex" onMouseLeave={onMouseLeaveNavList}>
@@ -89,7 +90,7 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
                                         className={clsx("flex", isActive ? "text-white" : "text-white/60")}
                                         onMouseEnter={onMouseEnterNavItem}
                                     >
-                                        <Link className={clsx("px-4 py-2", navItemCls)} to={item.path}>
+                                        <Link className={clsx("px-4 py-2 font-semibold", navItemCls)} to={item.path}>
                                             {item.title}
                                         </Link>
                                     </li>
@@ -98,14 +99,7 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
                         </ul>
                     </nav>
 
-                    {/* <input
-                        type="checkbox"
-                        onChange={(e) => {
-                            i18n.changeLanguage(e.target.checked ? "en" : "vi");
-                        }}
-                    /> */}
-
-                    <LanguageSwitch />
+                    <LanguageSwitch defaultValue={DEFAULT_LANG} onChange={i18n.changeLanguage} />
                 </div>
             </div>
         </header>
