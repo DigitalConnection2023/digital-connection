@@ -1,0 +1,24 @@
+.card {
+    height: 528px;
+}
+.card-top {
+    translate: 0 25%;
+}
+.card-bottom {
+    height: calc(528px - 248px);
+    translate: 0 528px;
+}
+
+.card-image-container {
+    height: 201px;
+}
+
+.card:hover .card-image-container {
+    height: 128px;
+}
+.card:hover .card-top {
+    translate: 0 0;
+}
+.card:hover .card-bottom {
+    translate: 0 248px;
+}

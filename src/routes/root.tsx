@@ -33,9 +33,11 @@ function Root() {
                     },
                 ]}
             />
-            <div className="grow">
-                <Outlet />
-            </div>
+            <main className="grow flex justify-center">
+                <div className="main-inner">
+                    <Outlet />
+                </div>
+            </main>
             <Footer />
         </div>
     );
