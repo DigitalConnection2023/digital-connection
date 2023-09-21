@@ -1,0 +1,20 @@
+.language-switch {
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
+}
+
+.switch-handle {
+    width: 20px;
+    height: 20px;
+    transition: translate;
+    background: url(../images/flags.png) no-repeat;
+    background-size: 20px 140px;
+}
+.switch-handle.vi {
+    background-position: 0 -20px;
+}
+.switch-handle.en {
+    background-position: 0 0;
+    translate: 20px;
+}

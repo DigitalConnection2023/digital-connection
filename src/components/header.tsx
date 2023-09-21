@@ -2,6 +2,8 @@ import clsx from "clsx";
 import i18n from "i18next";
 import { useRef, useEffect, ReactNode, MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { LanguageSwitch } from "./language-switch";
+import { DEFAULT_LANG } from "../constant";
 
 type TNavItem = {
     key?: string;
@@ -37,29 +39,73 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
         return item.path === "/" ? location.pathname === "/" : item.path === modulePath;
     };
 
-    const moveIndicatorTo = (navLink?: HTMLAnchorElement) => {
-        if (navLink && indicator.current && navList.current) {
-            // link's padding-x is 16
-            const translateX = (navLink.parentElement?.offsetLeft || 0) + 16;
+    const updateIndicator = (style: Partial<CSSStyleDeclaration>) => {
+        if (indicator.current) {
+            for (const key in style) {
+                indicator.current.style[key] = style[key]!;
+            }
+        }
+    };
 
-            indicator.current.style.width = `${navLink.clientWidth - 32}px`;
-            indicator.current.style.translate = `${translateX}px`;
+    const moveIndicatorTo = (navLink?: HTMLAnchorElement) => {
+        if (navLink && indicator.current) {
+            // link's padding-x is 16
+            updateIndicator({
+                width: `${navLink.clientWidth - 32}px`,
+                translate: `${(navLink.parentElement?.offsetLeft || 0) + 16}px`,
+            });
         }
     };
 
     const moveIndicatorToCurrentModule = () => {
-        const moduleIndex = navItems.findIndex(checkIfCurrentModule);
+        const currentIndex = navItems.findIndex(checkIfCurrentModule);
 
-        if (moduleIndex !== -1) {
-            const navLink = getNavLink(navList.current, moduleIndex);
+        if (currentIndex !== -1) {
+            const navLink = getNavLink(navList.current, currentIndex);
             moveIndicatorTo(navLink);
         } else if (indicator.current) {
-            indicator.current.style.width = "0px";
-            indicator.current.style.translate = "0px";
+            updateIndicator({
+                width: `0px`,
+                translate: `0px`,
+            });
         }
     };
 
     useEffect(moveIndicatorToCurrentModule, [location.pathname]);
+
+    useEffect(() => {
+        const currentIndex = navItems.findIndex((item) => item.path === modulePath);
+        const navLink = currentIndex !== -1 ? getNavLink(navList.current, currentIndex) : null;
+
+        if (navLink) {
+            let observed = false;
+
+            const resizeObserver = new ResizeObserver(() => {
+                if (observed) {
+                    updateIndicator({
+                        width: "0px",
+                        translate: `0px`,
+                        transitionDuration: "0ms",
+                    });
+
+                    setTimeout(() => {
+                        updateIndicator({
+                            transitionDuration: "300ms",
+                        });
+                        moveIndicatorTo(navLink);
+                    }, 50);
+                } else {
+                    observed = true;
+                }
+            });
+
+            resizeObserver.observe(navLink);
+
+            return () => {
+                resizeObserver.unobserve(navLink);
+            };
+        }
+    }, [modulePath]);
 
     const onMouseEnterNavItem = (e: MouseEvent<HTMLLIElement>) => {
         const navLink = getNavLink(e.currentTarget);
@@ -75,9 +121,16 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
             <div className="header-inner mx-auto py-2 flex justify-between">
                 <Link to={homeLink}>{logo}</Link>
 
-                <div className="flex">
-                    <nav className="relative">
-                        <div ref={indicator} className="h-1 absolute -z-10 bottom-0 left-0 duration-300 bg-secondary" />
+                <div className="flex items-center space-x-2">
+                    <nav className="relative overflow-hidden">
+                        <div
+                            ref={indicator}
+                            className="h-1 absolute -z-10 bottom-0 left-0 bg-secondary"
+                            style={{
+                                transition: "all 300ms ease-out",
+                            }}
+                        />
+
                         <ul ref={navList} className="list-none flex" onMouseLeave={onMouseLeaveNavList}>
                             {navItems.map((item, i) => {
                                 const isActive = checkIfCurrentModule(item);
@@ -88,7 +141,7 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
                                         className={clsx("flex", isActive ? "text-white" : "text-white/60")}
                                         onMouseEnter={onMouseEnterNavItem}
                                     >
-                                        <Link className={clsx("px-4 py-2", navItemCls)} to={item.path}>
+                                        <Link className={clsx("px-4 py-2 font-semibold", navItemCls)} to={item.path}>
                                             {item.title}
                                         </Link>
                                     </li>
@@ -97,12 +150,7 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
                         </ul>
                     </nav>
 
-                    <input
-                        type="checkbox"
-                        onChange={(e) => {
-                            i18n.changeLanguage(e.target.checked ? "en" : "vi");
-                        }}
-                    />
+                    <LanguageSwitch defaultValue={DEFAULT_LANG} onChange={i18n.changeLanguage} />
                 </div>
             </div>
         </header>
