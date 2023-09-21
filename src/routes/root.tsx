@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Footer, Header } from "../components";
 import ROUTE from "./routes.config";
-import { useTranslation } from "react-i18next";
 
 function Root() {
     const { t } = useTranslation();

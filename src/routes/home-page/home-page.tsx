@@ -6,24 +6,23 @@ function HomePage() {
 
     const cardItems = [
         {
-            title: "Abc",
-            content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus porro sit ab blanditiis, qui
-            maiores necessitatibus vero placeat iure, nobis ad? Maxime numquam dolor, doloremque rerum
-            laborum sed sit eaque?`,
+            title: "About Us",
+            content: `DC was founded with the aim of leveraging the transformative power of games to benefit
+            businesses. By providing in-app game applications, we facilitate closer connections between businesses and
+            their customers, leading to increased conversion rates and significant sales growth.`,
             image: "/images/about-us.png",
         },
         {
-            title: "Abc",
-            content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus porro sit ab blanditiis, qui
-            maiores necessitatibus vero placeat iure, nobis ad? Maxime numquam dolor, doloremque rerum
-            laborum sed sit eaque?`,
+            title: "Vision",
+            content: `With a passionate team and advanced technology, DC aims to publish and develop entertainment
+            products to meet the needs of domestic customers and export them to countries around the world.`,
             image: "/images/vision.png",
         },
         {
-            title: "Abc",
-            content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus porro sit ab blanditiis, qui
-            maiores necessitatibus vero placeat iure, nobis ad? Maxime numquam dolor, doloremque rerum
-            laborum sed sit eaque?`,
+            title: "Mission",
+            content: `Take control of the production, ensuring the development and operation's goals are met. Possess
+            unique IP and its products, shaping exclusive brand identities. Create a sustainable platform and system,
+            establish everlasting connections`,
             image: "/images/mission.png",
         },
     ];
@@ -35,7 +34,7 @@ function HomePage() {
                     return (
                         <div
                             key={i}
-                            className={clsx(styles.card, "bg-black rounded-2xl relative overflow-hidden group")}
+                            className={clsx(styles.card, "bg-black rounded-xl relative overflow-hidden group")}
                         >
                             <div className={clsx(styles["card-top"], "w-full absolute top-0", animationCls)}>
                                 <div
@@ -49,14 +48,26 @@ function HomePage() {
                                 </div>
 
                                 <div className="px-8">
-                                    <div className={clsx("w-full group-hover:w-0", animationCls)}>
-                                        <p className="text-4xl font-black uppercase text-center">{cardItem.title}</p>
-                                    </div>
+                                    <p
+                                        className={clsx(
+                                            "text-3xl font-black uppercase text-center whitespace-nowrap w-full group-hover:w-0",
+                                            animationCls
+                                        )}
+                                    >
+                                        {cardItem.title}
+                                    </p>
                                 </div>
                             </div>
 
-                            <div className={clsx(styles["card-bottom"], "w-full px-8 absolute top-0", animationCls)}>
-                                <p className={clsx("text-lg opacity-20 group-hover:opacity-100", animationCls)}>
+                            <div
+                                className={clsx(styles["card-bottom"], "w-full px-8 pb-8 absolute top-0", animationCls)}
+                            >
+                                <p
+                                    className={clsx(
+                                        "scale-150 opacity-0 group-hover:scale-100 group-hover:opacity-100",
+                                        animationCls
+                                    )}
+                                >
                                     {cardItem.content}
                                 </p>
                             </div>

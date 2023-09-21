@@ -13,6 +13,12 @@
     height: 201px;
 }
 
+.card:hover {
+    /* box-shadow: 0 0 0 2.5px white; */
+    -webkit-animation: glow 0.5s ease-in-out infinite alternate;
+    -moz-animation: glow 0.5s ease-in-out infinite alternate;
+    animation: glow 0.5s ease-in-out infinite alternate;
+}
 .card:hover .card-image-container {
     height: 128px;
 }
@@ -21,4 +27,13 @@
 }
 .card:hover .card-bottom {
     translate: 0 248px;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 0 1px #d1d7de, 0 0 1px 1px #d1d7de, 0 0 2px 1px #d1d7de;
+    }
+    to {
+        box-shadow: 0 0 2px 1px #d1d7de, 0 0 3px 2px #d1d7de, 0 0 4px 3px #d1d7de;
+    }
 }
