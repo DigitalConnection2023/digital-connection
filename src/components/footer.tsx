@@ -1,7 +1,67 @@
+import { useTranslation } from "react-i18next";
+import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import { LOGO_LINK } from "../constant";
+
+const companyInfo = {
+    title: "Công ty ABC",
+    description: "Đây là công ty ABC",
+    address: "123 Đường 456, TP.HCM, Việt Nam",
+    phoneNo: "0123 456 7890",
+    registerNo: "0987654321",
+    email: "contact@dc.vn",
+};
+
+const socialContacts = [
+    {
+        icon: <FaFacebookF />,
+        link: "https://facebook.com",
+    },
+    {
+        icon: <FaYoutube />,
+        link: "https://youtube.com",
+    },
+];
+
 export function Footer() {
+    const { t } = useTranslation();
+
     return (
-        <div className="flex justify-center sticky top-0" style={{ background: "#1c344a" }}>
-            <div className="footer-inner py-4">This is footer</div>
-        </div>
+        <footer className="flex justify-center bg-black">
+            <div className="footer-inner">
+                <div className="pt-8 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div className="flex flex-col items-center lg:items-start">
+                        <img src={LOGO_LINK} alt="logo" />
+                        <p className="text-secondary text-xl font-semibold">{companyInfo.title}</p>
+                        <p>{companyInfo.description}</p>
+                    </div>
+
+                    <div className="flex flex-col items-center lg:items-start">
+                        <p>{companyInfo.address}</p>
+                        <p>
+                            {t("Phone number")}: {companyInfo.phoneNo}
+                        </p>
+                        <p>Email: {companyInfo.email}</p>
+                    </div>
+
+                    <div className="flex flex-col items-center lg:items-start">
+                        <p className="text-lg font-medium">{t("Contact Us")}</p>
+                        <div className="mt-4 flex space-x-4 text-3xl">
+                            {socialContacts.map((contact, i) => {
+                                return (
+                                    <a key={i} className="text-white/60 hover:text-white" href={contact.link}>
+                                        {contact.icon}
+                                    </a>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="py-6 flex flex-col items-center">
+                    <p>GPKD: {companyInfo.registerNo}</p>
+                    <p>Copyright © 2023 DC. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
     );
 }

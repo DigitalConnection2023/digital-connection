@@ -117,7 +117,7 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
     };
 
     return (
-        <header className="flex justify-center sticky top-0 bg-black/20">
+        <header className="flex justify-center sticky top-0 bg-white">
             <div className="header-inner mx-auto py-2 flex justify-between">
                 <Link to={homeLink}>{logo}</Link>
 
@@ -138,7 +138,7 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
                                 return (
                                     <li
                                         key={i}
-                                        className={clsx("flex", isActive ? "text-white" : "text-white/60")}
+                                        className={clsx("flex", isActive ? "text-black" : "text-black/60")}
                                         onMouseEnter={onMouseEnterNavItem}
                                     >
                                         <Link className={clsx("px-4 py-2 font-semibold", navItemCls)} to={item.path}>
