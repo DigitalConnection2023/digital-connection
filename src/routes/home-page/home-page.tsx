@@ -29,7 +29,7 @@ function HomePage() {
 
     return (
         <div className="space-y-8">
-            <div className="py-4 grid grid-cols-3 gap-8">
+            <div className="py-4 grid grid-cols-1 md:grid-cols-3 gap-8">
                 {cardItems.map((cardItem, i) => {
                     return (
                         <div
@@ -40,7 +40,7 @@ function HomePage() {
                                 <div
                                     className={clsx(
                                         styles["card-image-container"],
-                                        "mt-10 mb-6 w-full flex justify-center",
+                                        "w-full mt-10 mb-6 px-8 flex justify-center",
                                         animationCls
                                     )}
                                 >

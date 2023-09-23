@@ -1,8 +1,12 @@
 {
-    "Products": "Products",
-    "Partners": "Partners",
-    "Recruitment": "Recruitment",
-    "Contact": "Contact",
+    "home": "Home",
+    "products": "Products",
+    "partners": "Partners",
+    "recruitment": "Recruitment",
+    "contact": "Contact",
+    "companyTitle": "ABC Company",
+    "footer.companyDescription": "This is ABC Company",
+    "companyAddress": "123 Street 456, HCM City, Vietnam",
     "phoneNo": "Phone number",
     "registerNo": "Register number",
     "footer.copyright": "Copyright © 2023 DC. All Rights Reserved."

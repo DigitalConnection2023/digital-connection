@@ -1,8 +1,9 @@
 {
-    "Products": "Sản phẩm",
-    "Partners": "Đối tác",
-    "Recruitment": "Tuyển dụng",
-    "Contact": "Liên hệ",
+    "home": "Trang chủ",
+    "products": "Sản phẩm",
+    "partners": "Đối tác",
+    "recruitment": "Tuyển dụng",
+    "contact": "Liên hệ",
     "companyTitle": "Công ty ABC",
     "footer.companyDescription": "Đây là công ty ABC",
     "companyAddress": "123 Đường 456, TP.HCM, Việt Nam",

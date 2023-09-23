@@ -8,34 +8,34 @@ function Root() {
     const { t } = useTranslation();
 
     return (
-        <div className="min-h-screen flex flex-col bg-primary">
+        <div id="root-inner" className="min-h-screen flex flex-col bg-primary text-white">
             <Header
                 logo={<img src={LOGO_LINK} alt="logo" />}
                 navItems={[
-                    // {
-                    //     title: "Home",
-                    //     path: ROUTE.home(),
-                    // },
                     {
-                        title: t("Products"),
+                        title: t("home"),
+                        path: ROUTE.home(),
+                    },
+                    {
+                        title: t("products"),
                         path: ROUTE.products(),
                     },
                     {
-                        title: t("Partners"),
+                        title: t("partners"),
                         path: ROUTE.partners(),
                     },
                     {
-                        title: t("Recruitment"),
+                        title: t("recruitment"),
                         path: ROUTE.recruitment(),
                     },
                     {
-                        title: t("Contact"),
+                        title: t("contact"),
                         path: ROUTE.contact(),
                     },
                 ]}
             />
             <main className="grow flex justify-center">
-                <div className="main-inner">
+                <div className="main-inner px-6 lg:px-0">
                     <Outlet />
                 </div>
             </main>
