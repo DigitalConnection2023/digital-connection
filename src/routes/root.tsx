@@ -11,24 +11,24 @@ function Root() {
             <Header
                 logo={<span>Logo</span>}
                 navItems={[
-                    // {
-                    //     title: "Home",
-                    //     path: ROUTE.home(),
-                    // },
                     {
-                        title: t("Products"),
+                        title: t("home"),
+                        path: ROUTE.home(),
+                    },
+                    {
+                        title: t("products"),
                         path: ROUTE.products(),
                     },
                     {
-                        title: t("Partners"),
+                        title: t("partners"),
                         path: ROUTE.partners(),
                     },
                     {
-                        title: t("Recruitment"),
+                        title: t("recruitment"),
                         path: ROUTE.recruitment(),
                     },
                     {
-                        title: t("Contact"),
+                        title: t("contact"),
                         path: ROUTE.contact(),
                     },
                 ]}

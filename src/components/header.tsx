@@ -74,7 +74,7 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
     useEffect(moveIndicatorToCurrentModule, [location.pathname]);
 
     useEffect(() => {
-        const currentIndex = navItems.findIndex((item) => item.path === modulePath);
+        const currentIndex = navItems.findIndex(checkIfCurrentModule);
         const navLink = currentIndex !== -1 ? getNavLink(navList.current, currentIndex) : null;
 
         if (navLink) {
@@ -122,7 +122,9 @@ export function Header({ logo, homeLink = "/", navItems }: IHeaderProps) {
                 <Link to={homeLink}>{logo}</Link>
 
                 <div className="flex items-center space-x-2">
-                    <nav className="relative overflow-hidden">
+                    <div></div>
+
+                    <nav className="hidden lg:block relative overflow-hidden">
                         <div
                             ref={indicator}
                             className="h-1 absolute -z-10 bottom-0 left-0 bg-secondary"

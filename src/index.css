@@ -19,5 +19,5 @@ body {
 .header-inner,
 .main-inner,
 .footer-inner {
-    width: 1050px;
+    @apply w-full px-4 lg:w-[1050px] lg:px-0;
 }
