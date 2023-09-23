@@ -2,5 +2,8 @@
     "Products": "Products",
     "Partners": "Partners",
     "Recruitment": "Recruitment",
-    "Contact": "Contact"
+    "Contact": "Contact",
+    "phoneNo": "Phone number",
+    "registerNo": "Register number",
+    "footer.copyright": "Copyright © 2023 DC. All Rights Reserved."
 }

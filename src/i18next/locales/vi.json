@@ -3,5 +3,11 @@
     "products": "Sản phẩm",
     "partners": "Đối tác",
     "recruitment": "Tuyển dụng",
-    "contact": "Liên hệ"
+    "contact": "Liên hệ",
+    "companyTitle": "Công ty ABC",
+    "footer.companyDescription": "Đây là công ty ABC",
+    "companyAddress": "123 Đường 456, TP.HCM, Việt Nam",
+    "phoneNo": "Số điện thoại",
+    "registerNo": "GPKD",
+    "footer.copyright": "Copyright © 2023 DC. All Rights Reserved."
 }
