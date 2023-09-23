@@ -8,7 +8,7 @@ function Root() {
     const { t } = useTranslation();
 
     return (
-        <div className="min-h-screen flex flex-col bg-primary">
+        <div id="root-inner" className="min-h-screen flex flex-col bg-primary">
             <Header
                 logo={<img src={LOGO_LINK} alt="logo" />}
                 navItems={[
