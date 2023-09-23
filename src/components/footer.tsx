@@ -3,9 +3,6 @@ import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { LOGO_LINK } from "../constant";
 
 const companyInfo = {
-    title: "Công ty ABC",
-    description: "Đây là công ty ABC",
-    address: "123 Đường 456, TP.HCM, Việt Nam",
     phoneNo: "0123 456 7890",
     registerNo: "0987654321",
     email: "contact@dc.vn",
@@ -27,24 +24,23 @@ export function Footer() {
 
     return (
         <footer className="flex justify-center bg-black">
-            <div className="footer-inner">
-                <div className="pt-8 grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="footer-inner pb-6">
+                <div className="py-8 grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4">
                     <div className="flex flex-col items-center lg:items-start">
                         <img src={LOGO_LINK} alt="logo" />
-                        <p className="text-secondary text-xl font-semibold">{companyInfo.title}</p>
-                        <p>{companyInfo.description}</p>
+                        <p className="text-secondary text-xl font-semibold">{t("companyTitle")}</p>
+                        <p>{t("footer.companyDescription")}</p>
                     </div>
 
                     <div className="flex flex-col items-center lg:items-start">
-                        <p>{companyInfo.address}</p>
+                        <p>{t("companyAddress")}</p>
                         <p>
-                            {t("Phone number")}: {companyInfo.phoneNo}
+                            {t("phoneNo")}: {companyInfo.phoneNo}
                         </p>
                         <p>Email: {companyInfo.email}</p>
                     </div>
 
-                    <div className="flex flex-col items-center lg:items-start">
-                        <p className="text-lg font-medium">{t("Contact Us")}</p>
+                    <div className="flex flex-col items-center lg:items-end">
                         <div className="mt-4 flex space-x-4 text-3xl">
                             {socialContacts.map((contact, i) => {
                                 return (
@@ -57,9 +53,11 @@ export function Footer() {
                     </div>
                 </div>
 
-                <div className="py-6 flex flex-col items-center">
-                    <p>GPKD: {companyInfo.registerNo}</p>
-                    <p>Copyright © 2023 DC. All Rights Reserved.</p>
+                <div className="flex flex-col items-center">
+                    <p>
+                        {t("registerNo")}: {companyInfo.registerNo}
+                    </p>
+                    <p>{t("footer.copyright")}</p>
                 </div>
             </div>
         </footer>
