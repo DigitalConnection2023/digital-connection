@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import i18n from "i18next";
-import { ReactNode, useState } from "react";
-import { FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { ReactNode, useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+
 import { DEFAULT_LANG } from "../../constant";
 import { LanguageSwitch } from "../language-switch";
 import { NavListHorizontal, NavListVertical, TNavItem } from "../nav-list";
@@ -15,30 +16,54 @@ interface IHeaderProps {
     navItems: TNavItem[];
 }
 export function Header({ className, logo, homeLink = "/", navItems }: IHeaderProps) {
+    const location = useLocation();
     const [activeNavList, setActiveNavList] = useState(false);
+
+    useEffect(() => {
+        if (activeNavList) {
+            setActiveNavList(false);
+        }
+    }, [location]);
+
+    const onClickMenuIcon = () => {
+        setActiveNavList(!activeNavList);
+    };
+
+    const closeDrawer = () => {
+        setActiveNavList(false);
+    };
 
     return (
         <header className={clsx("flex justify-center sticky top-0 z-50 bg-black", className)}>
-            <div className="header-inner mx-auto py-2 flex justify-between">
+            <div className="header-inner mx-auto py-2 px-4 lg:px-0 flex justify-between">
                 <Link to={homeLink}>{logo}</Link>
 
                 <div className="flex items-center space-x-2">
-                    <button
-                        className="block lg:hidden p-2 relative z-50"
-                        onClick={() => setActiveNavList(!activeNavList)}
-                    >
-                        <FaBars className="text-2xl" />
+                    <button className="block lg:hidden p-2 text-2xl text-white relative z-50" onClick={onClickMenuIcon}>
+                        {activeNavList ? <FaTimes /> : <FaBars />}
                     </button>
 
-                    <Drawer
-                        open={activeNavList}
-                        container={document.getElementById("root-inner")}
-                        onClose={() => setActiveNavList(false)}
-                    >
-                        <NavListVertical className="w-48 h-full pt-16 bg-white text-black" items={navItems} />
+                    <Drawer open={activeNavList} onClose={closeDrawer}>
+                        <div className="w-48 h-full pt-14 bg-primary border-l border-white/20">
+                            <NavListVertical
+                                indicatorBg="bg-secondary"
+                                navLinkCls={({ isActive }) => ({
+                                    color: isActive ? "text-white" : "text-white/60",
+                                    others: "border-b border-white/10",
+                                })}
+                                items={navItems}
+                            />
+                        </div>
                     </Drawer>
 
-                    <NavListHorizontal className="hidden lg:block" indicatorCls="bg-secondary" items={navItems} />
+                    <NavListHorizontal
+                        className="hidden lg:block"
+                        indicatorBg="bg-secondary"
+                        navLinkCls={({ isActive }) => ({
+                            color: isActive ? "text-white" : "text-white/60",
+                        })}
+                        items={navItems}
+                    />
 
                     <LanguageSwitch defaultValue={DEFAULT_LANG} onChange={i18n.changeLanguage} />
                 </div>

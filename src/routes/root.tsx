@@ -8,7 +8,7 @@ function Root() {
     const { t } = useTranslation();
 
     return (
-        <div id="root-inner" className="min-h-screen flex flex-col bg-primary">
+        <div id="root-inner" className="min-h-screen flex flex-col bg-primary text-white">
             <Header
                 logo={<img src={LOGO_LINK} alt="logo" />}
                 navItems={[
@@ -35,7 +35,7 @@ function Root() {
                 ]}
             />
             <main className="grow flex justify-center">
-                <div className="main-inner">
+                <div className="main-inner px-6 lg:px-0">
                     <Outlet />
                 </div>
             </main>

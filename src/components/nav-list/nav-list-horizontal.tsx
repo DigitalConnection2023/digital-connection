@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useRef, useEffect, MouseEvent } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { NavLinkCls, TNavItem } from "./types";
+import { getCurrentModuleIndex, getNavLinkCls } from "./utils";
 
 const navItemCls = "nav-item";
 
@@ -17,20 +18,19 @@ function getNavLink(e: HTMLElement | null, option?: "all" | number) {
 
 interface INavListHorizontalProps {
     className?: string;
-    indicatorCls?: string;
+    indicatorBg?: string;
     items: TNavItem[];
     navLinkCls?: NavLinkCls;
 }
-export const NavListHorizontal = ({ className, indicatorCls, items, navLinkCls }: INavListHorizontalProps) => {
+export const NavListHorizontal = ({
+    className,
+    indicatorBg = "bg-black",
+    items,
+    navLinkCls,
+}: INavListHorizontalProps) => {
     const location = useLocation();
     const indicator = useRef<HTMLDivElement>(null);
     const navList = useRef<HTMLUListElement>(null);
-
-    const modulePath = location.pathname.split("/")[1];
-
-    const checkIfCurrentModule = (item: TNavItem) => {
-        return item.path === "/" ? location.pathname === "/" : item.path === modulePath;
-    };
 
     const updateIndicator = (style: Partial<CSSStyleDeclaration>) => {
         if (indicator.current) {
@@ -51,24 +51,24 @@ export const NavListHorizontal = ({ className, indicatorCls, items, navLinkCls }
     };
 
     const moveIndicatorToCurrentModule = () => {
-        const currentIndex = items.findIndex(checkIfCurrentModule);
+        const currentIndex = getCurrentModuleIndex(items, location.pathname);
 
         if (currentIndex !== -1) {
             const navLink = getNavLink(navList.current, currentIndex);
             moveIndicatorTo(navLink);
-        } else if (indicator.current) {
+            return navLink;
+        }
+        if (indicator.current) {
             updateIndicator({
                 width: `0px`,
                 translate: `0px`,
             });
+            return null;
         }
     };
 
-    useEffect(moveIndicatorToCurrentModule, [location.pathname]);
-
     useEffect(() => {
-        const currentIndex = items.findIndex(checkIfCurrentModule);
-        const navLink = currentIndex !== -1 ? getNavLink(navList.current, currentIndex) : null;
+        const navLink = moveIndicatorToCurrentModule();
 
         if (navLink) {
             let observed = false;
@@ -98,7 +98,7 @@ export const NavListHorizontal = ({ className, indicatorCls, items, navLinkCls }
                 resizeObserver.unobserve(navLink);
             };
         }
-    }, [modulePath]);
+    }, [location.pathname]);
 
     const onMouseEnterNavItem = (e: MouseEvent<HTMLLIElement>) => {
         const navLink = getNavLink(e.currentTarget);
@@ -113,25 +113,24 @@ export const NavListHorizontal = ({ className, indicatorCls, items, navLinkCls }
         <nav className={clsx("relative", className)}>
             <div
                 ref={indicator}
-                className={clsx("h-1 absolute -z-10 bottom-0 left-0", indicatorCls)}
+                className={clsx("h-1 absolute -z-10 bottom-0 left-0", indicatorBg)}
                 style={{
                     transition: "all 300ms ease-out",
                 }}
             />
-
             <ul ref={navList} className="list-none flex" onMouseLeave={onMouseLeaveNavList}>
                 {items.map((item, i) => {
                     return (
                         <li key={i} className="flex" onMouseEnter={onMouseEnterNavItem}>
                             <NavLink
                                 className={({ isActive }) => {
-                                    const defaultCls = "px-4 py-2 font-semibold";
-
-                                    return clsx(
+                                    return getNavLinkCls(
                                         navItemCls,
-                                        navLinkCls
-                                            ? navLinkCls({ isActive, defaultCls })
-                                            : [defaultCls, isActive ? "text-white" : "text-white/60"]
+                                        {
+                                            padding: "px-4 py-2",
+                                            fontW: "font-semibold",
+                                        },
+                                        navLinkCls?.({ isActive })
                                     );
                                 }}
                                 to={item.path}

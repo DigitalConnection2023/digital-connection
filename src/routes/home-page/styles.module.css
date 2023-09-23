@@ -1,12 +1,13 @@
 .card {
-    height: 528px;
+    height: 496px;
+    @apply lg:h-[528px];
 }
 .card-top {
     translate: 0 25%;
 }
 .card-bottom {
-    height: calc(528px - 248px);
-    translate: 0 528px;
+    height: calc(496px - 248px);
+    @apply translate-y-[496px] lg:translate-y-[528px] lg:h-[calc(528px_-_248px)];
 }
 
 .card-image-container {
@@ -25,7 +26,7 @@
     translate: 0 0;
 }
 .card:hover .card-bottom {
-    translate: 0 248px;
+    @apply translate-y-[248px];
 }
 
 @keyframes glow {
