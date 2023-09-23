@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { LOGO_LINK } from "../constant";
 import { Footer, Header } from "../components";
 import ROUTE from "./routes.config";
 
@@ -9,7 +10,7 @@ function Root() {
     return (
         <div className="min-h-screen flex flex-col bg-primary">
             <Header
-                logo={<span>Logo</span>}
+                logo={<img src={LOGO_LINK} alt="logo" />}
                 navItems={[
                     // {
                     //     title: "Home",
