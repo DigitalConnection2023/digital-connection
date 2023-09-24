@@ -1,13 +1,13 @@
 .card {
-    height: 496px;
-    @apply lg:h-[528px];
+    height: 520px;
+    @apply lg:h-[548px];
 }
 .card-top {
     translate: 0 25%;
 }
 .card-bottom {
-    height: calc(496px - 248px);
-    @apply translate-y-[496px] lg:translate-y-[528px] lg:h-[calc(528px_-_248px)];
+    height: calc(520px - 248px);
+    @apply translate-y-[520px] lg:translate-y-[548px] lg:h-[calc(548px_-_248px)];
 }
 
 .card-image-container {
