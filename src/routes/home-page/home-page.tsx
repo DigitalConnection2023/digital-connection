@@ -1,32 +1,25 @@
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 import styles from "./styles.module.css";
 
 function HomePage() {
+    const { t } = useTranslation();
     const animationCls = "duration-500 ease-in-out";
 
     const cardItems = [
         {
-            title: "About Us",
-            content: `KNS là một công ty trẻ, hoạt động chuyên nghiệp ra đời với mong muốn mang đến cho các doanh nghiệp
-            sức mạnh chuyển hóa từ các trò chơi, với nền tảng là các ứng dụng trò chơi in-app. Chúng tôi muốn giúp các
-            doanh nghiệp kết nối gần hơn với khách hàng, qua đó tăng tỷ lệ chuyển đổi và góp phần thúc đẩy tăng trưởng 
-            doanh số vượt bật.`,
+            title: t("aboutUs"),
+            content: t("aboutUsContent"),
             image: "/images/about-us.png",
         },
         {
-            title: "Vision",
-            content: `Với đội ngũ nhiệt huyết và công nghệ tiên tiến, KNS đặt mục tiêu xuất bản và phát triển các sản
-            phẩm giải trí đáp ứng nhu cầu của khách hàng trong nước và xuất khẩu sang nước khác, cung cấp các trò chơi
-            đa nền tảng trên mobile, TV, PC và blockchain hay thậm chí có thể chơi game được trên máy bay, ô tô. Chúng
-            tôi mong muốn kết nối công nghệ với mọi người trên bất kỳ loại thiết bị nào.`,
+            title: t("vision"),
+            content: t("visionContent"),
             image: "/images/vision.png",
         },
         {
-            title: "Mission",
-            content: `Với mục tiêu luôn hướng về khách hàng, chúng tôi luôn kiểm soát, đảm bảo đạt mục tiêu phát triển
-            và vận hành, sở hữu IP và sản phẩm độc đáo, tạo nền tảng và hệ thống bền vững, thiết kế bền vững, thiết lập
-            kết nối vĩnh cửu. Sứ mệnh của chúng tôi là giúp doanh nghiệp của bạn tiếp cận gần hơn với người dùng và thị
-            trường mục tiêu. `,
+            title: t("mission"),
+            content: t("missionContent"),
             image: "/images/mission.png",
         },
     ];
@@ -44,7 +37,7 @@ function HomePage() {
                                 <div
                                     className={clsx(
                                         styles["card-image-container"],
-                                        "w-full mt-10 mb-6 px-8 flex justify-center",
+                                        "w-full my-6 px-8 flex justify-center",
                                         animationCls
                                     )}
                                 >

@@ -1,13 +1,13 @@
 .card {
-    height: 520px;
-    @apply lg:h-[548px];
+    height: 496px;
+    @apply lg:h-[528px];
 }
 .card-top {
     translate: 0 25%;
 }
 .card-bottom {
-    height: calc(520px - 248px);
-    @apply translate-y-[520px] lg:translate-y-[548px] lg:h-[calc(548px_-_248px)];
+    height: calc(496px - 224px);
+    @apply translate-y-[496px] lg:translate-y-[528px] lg:h-[calc(528px_-_224px)];
 }
 
 .card-image-container {
@@ -26,7 +26,7 @@
     translate: 0 0;
 }
 .card:hover .card-bottom {
-    @apply translate-y-[248px];
+    @apply translate-y-[224px];
 }
 
 @keyframes glow {
