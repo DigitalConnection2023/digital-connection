@@ -3,9 +3,9 @@ import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { LOGO_LINK } from "../constant";
 
 const companyInfo = {
-    phoneNo: "0123 456 7890",
-    registerNo: "0987654321",
-    email: "contact@dc.vn",
+    phoneNo: "028 3910 1085",
+    registerNo: "0317467192 - Thay đổi lần thứ nhất ngày 07/06/2023 cấp bởi Sở Kế hoạch và Đầu tư TP.HCM",
+    email: "tranlehung1032000@gmail.com",
 };
 
 const socialContacts = [

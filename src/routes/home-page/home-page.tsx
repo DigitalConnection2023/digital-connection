@@ -1,28 +1,25 @@
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 import styles from "./styles.module.css";
 
 function HomePage() {
+    const { t } = useTranslation();
     const animationCls = "duration-500 ease-in-out";
 
     const cardItems = [
         {
-            title: "About Us",
-            content: `DC was founded with the aim of leveraging the transformative power of games to benefit
-            businesses. By providing in-app game applications, we facilitate closer connections between businesses and
-            their customers, leading to increased conversion rates and significant sales growth.`,
+            title: t("aboutUs"),
+            content: t("aboutUsContent"),
             image: "/images/about-us.png",
         },
         {
-            title: "Vision",
-            content: `With a passionate team and advanced technology, DC aims to publish and develop entertainment
-            products to meet the needs of domestic customers and export them to countries around the world.`,
+            title: t("vision"),
+            content: t("visionContent"),
             image: "/images/vision.png",
         },
         {
-            title: "Mission",
-            content: `Take control of the production, ensuring the development and operation's goals are met. Possess
-            unique IP and its products, shaping exclusive brand identities. Create a sustainable platform and system,
-            establish everlasting connections`,
+            title: t("mission"),
+            content: t("missionContent"),
             image: "/images/mission.png",
         },
     ];
@@ -40,7 +37,7 @@ function HomePage() {
                                 <div
                                     className={clsx(
                                         styles["card-image-container"],
-                                        "w-full mt-10 mb-6 px-8 flex justify-center",
+                                        "w-full my-6 px-8 flex justify-center",
                                         animationCls
                                     )}
                                 >
