@@ -7,6 +7,8 @@ import ErrorPage from "./routes/error-page";
 import ContactPage from "./routes/contact-page";
 import ProductsPage from "./routes/products-page";
 import PartnersPage from "./routes/partners-page";
+import RecruitmentPage from "./routes/recruitment-page";
+
 import ROUTE from "./routes/routes.config";
 
 import "./i18next";
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: ROUTE.partners(),
                 element: <PartnersPage />,
+            },
+            {
+                path: ROUTE.recruitment(),
+                element: <RecruitmentPage />,
             },
             {
                 path: ROUTE.contact(),
