@@ -23,9 +23,9 @@ export function Footer() {
     const { t } = useTranslation();
 
     return (
-        <footer className="flex justify-center bg-black">
+        <footer className="flex justify-center bg-[#947c55]">
             <div className="footer-inner pb-6 px-4 lg:px-0">
-                <div className="py-8 grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4">
+                <div className="py-8 grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-4">
                     <div className="flex flex-col items-center lg:items-start">
                         <img src={LOGO_LINK} alt="logo" />
                         <p className="text-secondary text-xl font-semibold">{t("companyTitle")}</p>
