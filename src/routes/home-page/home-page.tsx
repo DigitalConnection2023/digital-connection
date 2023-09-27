@@ -31,7 +31,7 @@ function HomePage() {
                     return (
                         <div
                             key={i}
-                            className={clsx(styles.card, "bg-black rounded-xl relative overflow-hidden group")}
+                            className={clsx(styles.card, "bg-[#1a2b3d] rounded-xl relative overflow-hidden group")}
                         >
                             <div className={clsx(styles["card-top"], "w-full absolute top-0", animationCls)}>
                                 <div
@@ -47,7 +47,7 @@ function HomePage() {
                                 <div className="px-8">
                                     <p
                                         className={clsx(
-                                            "text-3xl font-black uppercase text-center whitespace-nowrap w-full group-hover:w-0",
+                                            "text-3xl font-black text-secondary uppercase text-center whitespace-nowrap w-full group-hover:w-0",
                                             animationCls
                                         )}
                                     >

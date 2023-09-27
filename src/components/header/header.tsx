@@ -34,7 +34,7 @@ export function Header({ className, logo, homeLink = "/", navItems }: IHeaderPro
     };
 
     return (
-        <header className={clsx("flex justify-center sticky top-0 z-50 bg-black", className)}>
+        <header className={clsx("flex justify-center sticky top-0 z-50 bg-[#947c55]", className)}>
             <div className="header-inner mx-auto py-2 px-4 lg:px-0 flex justify-between">
                 <Link to={homeLink}>{logo}</Link>
 
