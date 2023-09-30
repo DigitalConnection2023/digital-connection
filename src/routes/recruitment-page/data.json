@@ -1,0 +1,86 @@
+{
+    "departments": [
+        {
+            "id": "1",
+            "title": "Quản trị vận hành kỹ thuật",
+            "image": "images/technical-operator.jpg",
+            "jobDescriptions": [
+                "Lập và theo dõi nhật ký vận hành hàng ngày.",
+                "Xây dựng kế hoạch, triển khai bảo trì - bảo dưỡng hệ thống định kỳ.",
+                "Báo cáo công việc định kỳ cho cấp trên.",
+                "Thực hiện các công việc khác theo sự chỉ đạo của cấp trên."
+            ],
+            "requirements": [
+                "Tốt nghiệp Đại học, chuyên ngành Công nghệ thông tin hoặc Điện tử viễn thông.",
+                "Thành thạo vi tính văn phòng, internet, các phần mềm kỹ thuật chuyên dụng."
+            ],
+            "jobs": [
+                {
+                    "id": "1",
+                    "title": "Quản lý hệ thống thanh toán",
+                    "quantity": 1
+                },
+                {
+                    "id": "2",
+                    "title": "Quản lý website, event",
+                    "quantity": 1
+                },
+                {
+                    "id": "3",
+                    "title": "Quản trị hệ thống game",
+                    "quantity": 2
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Bộ phận Vận hành game",
+            "image": "images/game-operator.jpg",
+            "jobDescriptions": [
+                "Tham gia quá trình quản lý chất lượng sản phẩm và các phiên bản mới của sản phẩm.",
+                "Tìm hiểu, thống kê, phân tích nhu cầu khách hàng, thị hiếu thị trường, thông tin về thị trường quốc tế, sản phẩm, các hoạt động của sản phẩm khác trên thị trường,… để đề xuất phương án, ý tưởng xây dựng và phát triển sản phẩm. Báo cáo sản phẩm định kỳ cho cấp trên.",
+                "Báo cáo công việc định kỳ cho cấp trên.",
+                "Thực hiện các công việc khác theo sự chỉ đạo của cấp trên."
+            ],
+            "requirements": [
+                "Tốt nghiệp Trung cấp trở lên, chuyên ngành Kỹ thuật và Kinh tế, Marketing.",
+                "Có tinh thần chủ động học hỏi, nâng cao kinh nghiệm và trải nghiệm trong lĩnh vực Phát hành game, giao tiếp tốt.",
+                "Nghiêm túc, trách nhiệm công việc cao."
+            ],
+            "jobs": [
+                {
+                    "id": "1",
+                    "title": "Dự án game",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "title": "Bộ phận chăm sóc khách hàng",
+            "image": "images/customer-service.jpg",
+            "jobDescriptions": [
+                "Chăm sóc khách hàng qua kênh mạng xã hội, giải đáp thắc mắc của khách hàng về sản phẩm và các dịch vụ của Công ty.",
+                "Liên hệ chăm sóc khách hàng trên danh sách theo data có sẵn",
+                "Duy trì, chăm sóc mối quan hệ với khách hàng.",
+                "Giải quyết các vấn đề về sản phẩm, dịch vụ bằng cách làm rõ khiếu nại của khách hàng, xác định nguyên nhân vấn đề, lựa chọn giải pháp và giải thích tốt nhất để giải quyết vấn đề.",
+                "Quản lý database khách hàng và sử dụng data hợp lý.",
+                "Chủ động kết nối với các Phòng ban liên quan để phục vụ cho công việc.",
+                "Thực hiện các công việc khác được phân công của cấp trên."
+            ],
+            "requirements": [
+                "Tốt nghiệp Trung cấp trở lên.",
+                "Có kinh nghiệm về chăm sóc khách hàng hoặc sales.",
+                "Linh hoạt, xử lí các tình huống với khách hàng.",
+                "Có khả năng tư duy, đề xuất các ý kiến mới và chịu được áp lực cao."
+            ],
+            "jobs": [
+                {
+                    "id": "1",
+                    "title": "Chăm sóc khách hàng thông qua kênh mạng xã hội",
+                    "quantity": 1
+                }
+            ]
+        }
+    ]
+}
