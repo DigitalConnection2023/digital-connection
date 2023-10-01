@@ -7,8 +7,7 @@ import HomePage from "./routes/home-page";
 import NewsPage, { NewsView } from "./routes/news-page";
 import ContactPage from "./routes/contact-page";
 import RecruitmentPage from "./routes/recruitment-page";
-
-import ROUTE from "./routes/routes.config";
+import { ERoute } from "./constant";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -23,12 +22,12 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: ROUTE.home(),
+                path: ERoute.HOME,
                 element: <HomePage />,
                 errorElement: <ErrorPage />,
             },
             {
-                path: ROUTE.news(),
+                path: ERoute.NEWS,
                 children: [
                     {
                         index: true,
@@ -41,11 +40,11 @@ const router = createBrowserRouter([
                 ],
             },
             {
-                path: ROUTE.recruitment(),
+                path: ERoute.RECRUITMENT,
                 element: <RecruitmentPage />,
             },
             {
-                path: ROUTE.contact(),
+                path: ERoute.CONTACT,
                 element: <ContactPage />,
             },
         ],
