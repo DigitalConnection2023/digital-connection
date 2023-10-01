@@ -10,6 +10,9 @@ import RecruitmentPage from "./routes/recruitment-page";
 
 import ROUTE from "./routes/routes.config";
 
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import "./i18next";
 import "./index.css";
 

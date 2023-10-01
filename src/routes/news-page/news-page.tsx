@@ -1,54 +1,39 @@
-import { useState, UIEvent } from "react";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper/modules";
 
 import data from "./data.json";
-import clsx from "clsx";
 
 function NewsPage() {
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    const onScroll = (e: UIEvent<HTMLDivElement>) => {
-        const { scrollLeft, clientWidth } = e.currentTarget;
-        const newActiveIndex = Math.floor(scrollLeft) / clientWidth;
-
-        if (newActiveIndex % 1 === 0) {
-            setActiveIndex(newActiveIndex);
-        }
-    };
-
     return (
         <div className="py-8 px-6 lg:px-0">
-            <div>
-                <div className="flex no-scrollbar snap-x snap-mandatory" onScroll={onScroll}>
+            <div className="flex">
+                <Swiper
+                    loop
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination, Navigation]}
+                >
                     {data.posts.map((post) => {
                         return (
-                            <Link key={post.id} className="w-full shrink-0 snap-center" to={post.id}>
-                                <div className="lg:flex">
-                                    <div className="shrink-0">
-                                        <img src={post.image} alt="" />
+                            <SwiperSlide key={post.id}>
+                                <Link to={post.id}>
+                                    <div className="lg:flex">
+                                        <div className="shrink-0">
+                                            <img className="lg:h-80" src={post.image} alt="" />
+                                        </div>
+                                        <div className="px-4 py-6 lg:px-6 lg:py-10 h-64 lg:h-auto grow bg-black space-y-2 ">
+                                            <p className="uppercase text-lg font-bold text-secondary">{post.title}</p>
+                                            <div className="h-px w-8 bg-white/60" />
+                                            <p className="line-clamp-4">{post.introduction}</p>
+                                        </div>
                                     </div>
-                                    <div className="grow p-4 bg-black">
-                                        <p className="uppercase text-lg font-bold text-secondary">{post.title}</p>
-                                        <p className="mt-2 line-clamp-4">{post.introduction}</p>
-                                    </div>
-                                </div>
-                            </Link>
+                                </Link>
+                            </SwiperSlide>
                         );
                     })}
-                </div>
-                <div className="mt-2 flex justify-center space-x-2">
-                    {Array.from({ length: data.posts.length }, (_, i) => {
-                        return (
-                            <div
-                                key={i}
-                                className={clsx(
-                                    "w-2 h-2 rounded-full",
-                                    i === activeIndex ? "bg-secondary" : "bg-white"
-                                )}
-                            />
-                        );
-                    })}
-                </div>
+                </Swiper>
             </div>
         </div>
     );
