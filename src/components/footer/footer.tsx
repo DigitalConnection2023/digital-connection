@@ -56,10 +56,10 @@ export function Footer() {
                 </div>
 
                 <div className="flex flex-col items-center">
-                    <p>
+                    <p className="text-center">
                         {t("registerNo")}: {companyInfo.registerNo}
                     </p>
-                    <p>{t("footer.copyright")}</p>
+                    <p className="text-center">{t("footer.copyright")}</p>
                 </div>
             </div>
         </footer>
