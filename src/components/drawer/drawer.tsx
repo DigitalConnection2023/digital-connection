@@ -52,7 +52,7 @@ export const Drawer = forwardRef<TDrawerControl, IDrawerProps>(
         };
 
         return createPortal(
-            <div className={clsx("absolute top-0 bottom-0 overflow-hidden", state === "CLOSED" ? "" : "w-full")}>
+            <div className={clsx("absolute z-40 top-0 bottom-0 overflow-hidden", state === "CLOSED" ? "" : "w-full")}>
                 <div
                     className={clsx("absolute top-0 bottom-0 left-0 right-0 bg-black/40", isOpen ? "block" : "hidden")}
                     onClick={onClickMask}

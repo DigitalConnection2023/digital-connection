@@ -27,3 +27,13 @@ body {
 .footer-inner {
     @apply w-full lg:w-[1050px];
 }
+
+.swiper-horizontal {
+    @apply pb-9;
+}
+.swiper-pagination-bullet {
+    @apply bg-white opacity-50;
+}
+.swiper-pagination-bullet-active {
+    @apply bg-secondary opacity-100;
+}

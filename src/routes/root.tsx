@@ -21,10 +21,6 @@ function Root() {
                         path: ROUTE.news(),
                     },
                     {
-                        title: t("partners"),
-                        path: ROUTE.partners(),
-                    },
-                    {
                         title: t("recruitment"),
                         path: ROUTE.recruitment(),
                     },
