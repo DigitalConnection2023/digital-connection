@@ -1,7 +1,6 @@
 const ROUTE = {
     home: () => `/`,
-    products: () => `products`,
-    partners: () => `partners`,
+    news: () => "news",
     recruitment: () => `recruitment`,
     contact: () => `contact`,
 };
