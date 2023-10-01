@@ -5,7 +5,7 @@ import Root from "./routes/root";
 import HomePage from "./routes/home-page";
 import ErrorPage from "./routes/error-page";
 import ContactPage from "./routes/contact-page";
-import ProductsPage from "./routes/products-page";
+import NewsPage from "./routes/news-page";
 import PartnersPage from "./routes/partners-page";
 import RecruitmentPage from "./routes/recruitment-page";
 
@@ -26,12 +26,12 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
             },
             {
-                path: ROUTE.products(),
-                element: <ProductsPage />,
+                path: ROUTE.news(),
+                element: <NewsPage />,
                 children: [
                     {
                         path: ":id",
-                        element: <ProductsPage />,
+                        element: <NewsPage />,
                     },
                 ],
             },

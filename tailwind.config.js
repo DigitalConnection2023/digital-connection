@@ -11,6 +11,14 @@ export default {
                     DEFAULT: "#f5ce2e",
                 },
             },
+            backgroundImage: {
+                "about-mission-desktop":
+                    "url('https://anymindgroup.com/wp-content/themes/anymind/img/about/content_mission.png')",
+                "about-mission-mobile":
+                    "url('https://anymindgroup.com/wp-content/themes/anymind/img/about/content_mission_sp.png')",
+                "about-purpose":
+                    "url('https://anymindgroup.com/wp-content/themes/anymind/img/about/bg_about_porpose.jpg')",
+            },
         },
     },
     plugins: [],
