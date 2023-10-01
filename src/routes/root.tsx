@@ -17,8 +17,8 @@ function Root() {
                         path: ROUTE.home(),
                     },
                     {
-                        title: t("products"),
-                        path: ROUTE.products(),
+                        title: t("news"),
+                        path: ROUTE.news(),
                     },
                     {
                         title: t("partners"),
