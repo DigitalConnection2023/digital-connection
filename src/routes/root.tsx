@@ -1,8 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LOGO_LINK } from "../constant";
+import { LOGO_LINK, ERoute } from "../constant";
 import { Footer, Header } from "../components";
-import ROUTE from "./routes.config";
 
 function Root() {
     const { t } = useTranslation();
@@ -14,19 +13,19 @@ function Root() {
                 navItems={[
                     {
                         title: t("home"),
-                        path: ROUTE.home(),
+                        path: ERoute.HOME,
                     },
                     {
                         title: t("news"),
-                        path: ROUTE.news(),
+                        path: ERoute.NEWS,
                     },
                     {
                         title: t("recruitment"),
-                        path: ROUTE.recruitment(),
+                        path: ERoute.RECRUITMENT,
                     },
                     {
                         title: t("contact"),
-                        path: ROUTE.contact(),
+                        path: ERoute.CONTACT,
                     },
                 ]}
             />
