@@ -5,7 +5,7 @@ import { LOGO_LINK } from "../../constant";
 const companyInfo = {
     phoneNo: "(028) 3910 1085",
     registerNo: "0317467192 - Cấp ngày 07/06/2023 bởi Sở Kế hoạch và Đầu tư TP.HCM",
-    email: "...@anymindgroup.com",
+    email: "digitalconnection.biz@gmail.com",
 };
 
 const socialContacts = [
