@@ -25,11 +25,7 @@ function HomePage() {
     ];
     return (
         <div className="pb-8 lg:pt-8">
-            <img
-                className="w-full object-cover rounded-md lg:h-[600px]"
-                src={"https://i.ibb.co/FDZzR2y/Banner.jpg"}
-                alt="banner"
-            />
+            <img className="w-full rounded-md lg:h-[600px]" src={"https://i.ibb.co/K9QWmyJ/banner.jpg"} alt="banner" />
             <div className="space-y-8 mx-2 lg:mx-0">
                 <div className="py-4 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {cardItems.map((cardItem, i) => {
@@ -89,7 +85,7 @@ function HomePage() {
                 <div className="basis-full lg:basis-1/2 flex justify-center items-center">
                     <img
                         className="lg:max-w-md lg:px-0 px-1 object-cover"
-                        src="https://i.ibb.co/3hSrJgj/Image1.png"
+                        src="https://i.ibb.co/TqcBj0d/Image1.png"
                         alt=""
                     />
                 </div>
