@@ -190,7 +190,7 @@ function HomePage() {
                     <div className="relative">
                         <div className="relative z-[2] grid lg:grid-cols-[38%1fr] grid-cols-1 lg:gap-[7.7%] gap-8 items-center lg:p-12 p-2 bg-[#0e1a25] rounded-lg">
                             <div>
-                                <h4 className="bg-clip-text text-[rgba(0,0,0,0)] inline-block bg-title-mission text-lg font-extrabold text-black">
+                                <h4 className="bg-clip-text text-[rgba(0,0,0,0)] inline-block bg-title-mission text-lg font-extrabold">
                                     Our Mission
                                 </h4>
                                 <p className="lg:text-lg font-bold text-sm !leading-[2.8em] text-white lg:mt-[37px] mt-7">
