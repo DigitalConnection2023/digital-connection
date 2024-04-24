@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
 import { LOGO_LINK, ERoute } from "../constant";
 import { Footer, Header } from "../components";
 
@@ -35,6 +37,7 @@ function Root() {
                 </div>
             </main>
             <Footer />
+            <SpeedInsights />
         </div>
     );
 }
